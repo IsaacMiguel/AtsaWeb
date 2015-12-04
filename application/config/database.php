@@ -45,24 +45,24 @@
 | the active record class
 */
 
-$active_group = 'atsa';
-$active_record = TRUE;
+$active_group = '';
+$active_record = ;
 
-$db['atsa']['hostname'] = 'ugpanel';
-$db['atsa']['username'] = 'admin';
-$db['atsa']['password'] = 'atsa486SN';
-$db['atsa']['database'] = 'atsa';
-$db['atsa']['dbdriver'] = 'mysql';
-$db['atsa']['dbprefix'] = '';
-$db['atsa']['pconnect'] = TRUE;
-$db['atsa']['db_debug'] = FALSE;
-$db['atsa']['cache_on'] = FALSE;
-$db['atsa']['cachedir'] = '';
-$db['atsa']['char_set'] = 'utf8';
-$db['atsa']['dbcollat'] = 'utf8_general_ci';
-$db['atsa']['swap_pre'] = '';
-$db['atsa']['autoinit'] = TRUE;
-$db['atsa']['stricton'] = FALSE;
+$db['']['hostname'] = '';
+$db['']['username'] = '';
+$db['']['password'] = '';
+$db['']['database'] = '';
+$db['']['dbdriver'] = '';
+$db['']['dbprefix'] = '';
+$db['']['pconnect'] = ;
+$db['']['db_debug'] = ;
+$db['']['cache_on'] = ;
+$db['']['cachedir'] = ;
+$db['']['char_set'] = ;
+$db['']['dbcollat'] = ;
+$db['']['swap_pre'] = ;
+$db['']['autoinit'] = ;
+$db['']['stricton'] = ;
 
 
 /* End of file database.php */

@@ -16,7 +16,7 @@
 | environments.
 |
 */
-$config['base_url'] = 'http://atsasn.com.ar/index.php';
+$config['base_url'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +46,7 @@ $config['index_page'] = '';
 | 'ORIG_PATH_INFO'	Uses the ORIG_PATH_INFO
 |
 */
-$config['uri_protocol']	= 'AUTO';
+$config['uri_protocol']	= '';
 
 /*
 |--------------------------------------------------------------------------
@@ -71,7 +71,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'english';
+$config['language']	= '';
 
 /*
 |--------------------------------------------------------------------------
@@ -82,7 +82,7 @@ $config['language']	= 'english';
 | that require a character set to be provided.
 |
 */
-$config['charset'] = 'UTF-8';
+$config['charset'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = ;
 
 
 /*
@@ -156,11 +156,11 @@ $config['permitted_uri_chars'] = 'a-z 0-9~%.:_\-';
 | use segment based URLs.
 |
 */
-$config['allow_get_array']		= TRUE;
-$config['enable_query_strings'] = FALSE;
-$config['controller_trigger']	= 'c';
-$config['function_trigger']		= 'm';
-$config['directory_trigger']	= 'd'; // experimental not currently in use
+$config['allow_get_array']		= ;
+$config['enable_query_strings'] = ;
+$config['controller_trigger']	= ;
+$config['function_trigger']		= ;
+$config['directory_trigger']	= ; // experimental not currently in use
 
 /*
 |--------------------------------------------------------------------------
@@ -226,7 +226,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = 'AKFJpgugpefj#JO851p2i12pPHGNILKHGp912ou2p125h;H:FGH;';
+$config['encryption_key'] = '';
 
 /*
 |--------------------------------------------------------------------------

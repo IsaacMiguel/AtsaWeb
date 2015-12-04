@@ -1,0 +1,47 @@
+/*.bol-borde{
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-width: 1px;
+	margin: 5px;
+	padding: 3px;
+}*/
+nav{
+	position: fixed;
+}
+
+.tabla_imprimir{
+	text-align: center;
+}
+
+.encabezado-tabla{
+	border-width: 1px;
+	border-style: solid;
+}
+
+section.carouselItem .carousel .item,
+section.carouselItem .carousel .item.active,
+section.carouselItem .carousel .carousel-inner {
+    height: 100%;
+}
+
+section.carouselItem .carousel .fill {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+div.footer{
+	background-color: #0B2F3A;
+	color: white;
+	text-align: center;
+	padding: 30px;
+}
+
+footer{
+	float: bottom;
+}
+
+.container{
+	min-height: 100%; 
+}

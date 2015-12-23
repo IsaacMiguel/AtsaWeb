@@ -1,0 +1,78 @@
+#santa {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 60px;
+    margin:0;
+    padding: 0;
+    background: url(../files/xmas_bg_n.gif) left bottom;
+}
+#santa:before {
+    position: absolute;
+    bottom: -2px;
+    left: -200px;
+    content: "";
+    display: inline-block;
+    width: 200px;
+    height: 26px;
+    background: url(../files/xmas_santa_n.gif) transparent no-repeat;
+    -webkit-animation-delay: 4s;
+    -webkit-animation-duration: 20s;
+    -webkit-animation-name: santamove;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-delay: 4s;
+    animation-duration: 20s;
+    animation-name: santamove;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+#santa:after {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    content: "";
+    display: inline-block;
+    width: 100%;
+    height: 10px;
+    background: url(../files/xmas_snow_n.png) transparent repeat-x;
+}
+@-webkit-keyframes santamove {
+    from {left: 0%;}
+    to {left: 200%;}
+}
+@keyframes santamove {
+    from {left: 0%;}
+    to {left: 150%;}
+}
+
+#navidad-titulo{
+    font-family: christmas-title;
+    text-align: center;
+    font-size: 4em;
+    font-weight: bold;
+}
+
+p.navidad-texto{
+    font-family: christmas-txt;
+    text-align: center;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#navidad-contenido{
+    text-align: center;
+}
+
+@font-face {
+    font-family: christmas-title;
+    src: url(fonts/christmaseve.ttf);
+}
+
+@font-face {
+    font-family: christmas-txt;
+    src: url(fonts/MountainsofChristmas.ttf);
+}

@@ -40,6 +40,23 @@
 
     <!-- Page Content -->
     <div class="container">
+    <!-- Seccion navideña -->
+<hr>
+        <div id="santa" class="row"></div>
+        <div class="row panel">
+            <div class="col-md-12">
+                <h2 id="navidad-titulo">FILIAL SAN NICOLAS</h2>
+                <p id="navidad-contenido">QUE EL ESPÍRITU DE ESTAS NAVIDADES NOS ENVUELVA A TODOS Y NOS UNA EN ORACIÓN, COMPROMISO, VOLUNTAD Y 
+                AMOR COMPASIVO PARA QUE TODAS NUESTRAS FAMILIAS Y SERES QUERIDOS ENCUENTREN PAZ EN SU CORAZÓN.
+                ESTAMOS EN UN MOMENTO CRITICO DE LA HISTORIA, Y YA QUE LOS SERES HUMANOS TENEMOS LA CAPACIDAD DESTRUCTIVA 
+                TAMBIÉN ESTA LA CONSTRUCTIVA A TRAVÉS DEL DIALOGO INTERRELIGIOSO Y  COOPERATIVISTA, SIEMPRE PUDIENDO VER 
+                LO QUE NOS UNE Y NO LO QUE NOS SEPARA.</p>
+                <p class="navidad-texto">¡PAZ Y AMOR PARA TODOS!</p>
+                <p class="navidad-texto">¡¡FELICES FIESTAS!!</p>
+                <p class="navidad-texto">A.T.S.A. FILIAL SAN NICOLÁS</p>
+            </div>
+        </div>
+    <!-- /Seccion navideña -->
 
         <!-- Marketing Icons Section -->
         <div class="row">

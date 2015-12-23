@@ -21,6 +21,9 @@
         <!-- Custom CSS -->
         <link href="<?php echo base_url();?>../css/main.css" rel="stylesheet">
 
+        <!-- Christmas CSS -->
+        <link href="<?php echo base_url();?>../css/christmas.css" rel="stylesheet">
+
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -28,6 +31,7 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
+    
     <body>
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">

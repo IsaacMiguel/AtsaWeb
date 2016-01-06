@@ -57,7 +57,7 @@
                         </tr>
                         <tr>
                             <td>Importe a pagar:</td>
-                            <td><input class="form-control" id="importe_capital" name="importe_capital" type="number" min="0" required></td>
+                            <td><input class="form-control" id="importe_capital" name="importe_capital" step="any" type="number" min="0" required></td>
                         </tr>
                         <tr>
                             <td>Aporte del mes</td>

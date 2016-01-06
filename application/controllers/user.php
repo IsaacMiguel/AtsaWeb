@@ -284,7 +284,7 @@ class User extends CI_Controller
 
 			$this->load->view('user/header');
 			$this->load->view('user/ver_boleta', $data);
-			$this->load->view('user/footer');
+			$this->load->view('user/footer_imprimir');
 		}else{
 			header('Location: ' . base_url());
 		}
@@ -293,8 +293,11 @@ class User extends CI_Controller
 	public function listar()
 	{
 		if ($this->session->userdata('id')) {
+			$this->load->model('prov_localidad');
+			$data['prov'] = $this->prov_localidad->getProv();
+
 			$this->load->view('user/header');
-			$this->load->view('en_construccion');
+			$this->load->view('user/registrar', $data);
 			$this->load->view('user/footer');
 		}else{
 			header('Location: ' . base_url());
@@ -359,7 +362,7 @@ class User extends CI_Controller
 
 			$this->load->view('user/header');
 			$this->load->view('user/ver_boleta', $data);
-			$this->load->view('user/footer');
+			$this->load->view('user/footer_imprimir');
 		}else{
 			header('Location: ' . base_url());
 		}

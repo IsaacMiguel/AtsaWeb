@@ -23,6 +23,12 @@ class Administrador extends CI_Model
 		return $data->result();	
 	}
 
+	public function getUser($id_usuario){
+		$data = $this->db->query('select * from usuarios where id_usuario =' . $id_usuario);
+
+		return $data->row();
+	}
+
 	public function getUserByCuit($dato)
 	{
 		$data = $this->db->query('select * from usuarios where cuit like "%' . $dato . '%"');
@@ -94,6 +100,15 @@ class Administrador extends CI_Model
 
 	public function resetearPassUsuario($id_usuario, $pass){
 		$data = $this->db->query("update usuarios set password='". $pass . "' where id_usuario= " . $id_usuario);
+	}
+
+	public function setUser($cuit, $password, $email){
+		$data = array(
+			'cuit' => $cuit,
+			'password' => $password,
+			'email' => $email );
+
+		$this->db->insert('usuarios', $data);
 	}
 }
 ?>

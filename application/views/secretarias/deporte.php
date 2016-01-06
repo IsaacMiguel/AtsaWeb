@@ -77,7 +77,7 @@
         <!-- /.row -->
 
         <!-- Related Projects Row -->
-        <div class="row">
+        <!-- <div class="row">
 
             <div class="col-lg-12">
                 <h3 class="page-header">Items a agregar</h3>
@@ -107,7 +107,7 @@
                 </a>
             </div>
 
-        </div>
+        </div> -->
         <!-- /.row -->
 
 <hr>

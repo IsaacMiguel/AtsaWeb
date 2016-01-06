@@ -183,4 +183,3 @@
 
 <button type="button" id="imprimir" name="imprimir" class="btn btn-primary">Imprimir</button>
 </div>
-<hr>

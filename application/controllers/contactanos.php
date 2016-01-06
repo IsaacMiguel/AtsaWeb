@@ -21,33 +21,33 @@ class Contactanos extends CI_Controller
 			}
 	}
 
-		public function enviar()
-		{
-			$ape_nomb = $this->input->post('ape_nomb');
-			$telefono = $this->input->post('telefono');
-			$correo = $this->input->post('correo');
-			$mensaje = $this->input->post('mensaje');
+	public function enviar()
+	{
+		$ape_nomb = $this->input->post('ape_nomb');
+		$telefono = $this->input->post('telefono');
+		$correo = $this->input->post('correo');
+		$mensaje = $this->input->post('mensaje');
 
 
-			$this->email->from($correo, $ape_nomb);
-			$this->email->to('isaacmiguel@gmail.com');
+		$this->email->from($correo, $ape_nomb);
+		$this->email->to('atsasannicolas@hotmail.com');
 
-			$this->email->subject('Mensaje enviado desde ATSA/contactanos');
+		$this->email->subject('Mensaje enviado desde ATSA/contactanos');
 
-			$body = 	"Nombre y Apellido: " . $ape_nomb . "\n\n" .
-						"Email: " .$correo. "\n\n" .
-						"Telefono: " .$telefono. "\n\n" .
-						"Mensaje: " .$mensaje;
+		$body = 	"Nombre y Apellido: " . $ape_nomb . "\n\n" .
+					"Email: " .$correo. "\n\n" .
+					"Telefono: " .$telefono. "\n\n" .
+					"Mensaje: " .$mensaje;
 
-			$this->email->message($body);	
+		$this->email->message($body);	
 
-			if($this->email->send()) {
-	                echo "Su consulta fue enviada correctamente";
-	                redirect('/welcome');
-	            } else {
-	                echo 'Hubo un error procesando lo solicitado. Intente nuevamente mas tarde';
-	                redirect('/welcome');
-	            }
-		}
+		if($this->email->send()) {
+      echo "Su consulta fue enviada correctamente";
+      redirect('/welcome');
+    }else{
+      echo 'Hubo un error procesando lo solicitado. Intente nuevamente mas tarde';
+      redirect('/welcome');
+    }
+	}
 }
 ?>

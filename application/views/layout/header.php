@@ -94,7 +94,7 @@
                     <li class='dropdown'>
                       <a class='dropdown-toggle' href='#' data-toggle='dropdown' style="background: none;">Aportes<strong class='caret'></strong></a>
                       <div class='dropdown-menu' style='padding: 10px; padding-bottom: 0px; background: none; width: 400px;'>
-                        <form method="POST" action="login/">
+                        <form method="POST" action="<?php echo base_url();?>login">
                           <div class='form-group'>
                             <input class='form-control large' style='text-align: center;' type='text' name='cuit' placeholder='cuit'/>
                           </div>

@@ -25,12 +25,17 @@ class Admin extends CI_Controller
 		$this->load->model('administrador');
 		$data['dato'] = $this->administrador->getUserCuit($cuit);
 
+		$ext = false;
 
 		foreach ($data['dato'] as $d) {
 			$data = $d->cuit;
-		}	
+			if ($data == $cuit) {
+				$ext = true;
+			}
+		}
 
-		if ($data == $cuit) {
+
+		if ($ext == true) {
 			$this->load->view('admin/header');
 			echo "<h4 style='text-align:center;'>Ya existe un usuario con ese CUIT!</h4>";
 			$this->load->view('admin/footer');
@@ -55,33 +60,33 @@ class Admin extends CI_Controller
 	        $pass .= substr($cadena,$pos,1);
 	    }
 
-		$this->load->model('usuario');
-		$insersion = $this->usuario->setUser($cuit, $pass, $email);
+				$this->load->model('administrador');
+				$this->administrador->setUser($cuit, $pass, $email);
 
-		//se envia por correo al usuario su cuenta y pass
-			$cuit = $this->input->post('cuit');
-			$emailATSA = "atsasannicolas@hotmail.com";
+				//se envia por correo al usuario su cuenta y pass
+					$cuit = $this->input->post('cuit');
+					$emailATSA = "atsasannicolas@hotmail.com";
 
-			$this->email->from($emailATSA, $cuit);
-			$this->email->to($email);
+					$this->email->from($emailATSA, $cuit);
+					$this->email->to($email);
 
-			$this->email->subject('Ha sido dado de alta en la web de ATSA San Nicolás');
+					$this->email->subject('Ha sido dado de alta en la web de ATSA San Nicolás');
 
-			$body = 	"Su cuenta de usuario es: " . $cuit . "\n\n" .
-						"Su Contraseña es: " .$pass . "\n\n" .
-						"Guarde este correo para conservar su contraseña en caso de olvidarla.";
+					$body =	"Su cuenta de usuario es: " . $cuit . "\n\n" .
+								"Su Contraseña es: " .$pass . "\n\n" .
+								"Guarde este correo para conservar su contraseña en caso de olvidarla.";
 
-			$this->email->message($body);	
+					$this->email->message($body);	
 
-			if($this->email->send()) {
-                $this->load->view('admin/header');
-				echo "<h4 style='text-align:center;'>Usuario registrado con exito!</h4>";
-				$this->load->view('admin/registrar_usuario');
-				$this->load->view('admin/footer');
-            } else {
-                echo 'Hubo un error procesando lo solicitado. Intente nuevamente mas tarde';
-                redirect('/welcome');
-            }
+					if($this->email->send()) {
+		                $this->load->view('admin/header');
+						echo "<h4 style='text-align:center;'>Usuario registrado con exito!</h4>";
+						$this->load->view('admin/registrar_usuario');
+						$this->load->view('admin/footer');
+		      } else {
+		          echo 'Hubo un error procesando lo solicitado. Intente nuevamente mas tarde';
+		          redirect('/welcome');
+		      }
         }
 	}
 
@@ -108,34 +113,34 @@ class Admin extends CI_Controller
 	    $this->load->model('administrador');
 	    $this->administrador->resetearPassUsuario($id_usuario, $pass);
 
-	    $data = $this->administrador->getUserById($id_usuario);
+	    $data = $this->administrador->getUser($id_usuario);
 
 	    $cuit = $data->cuit;
-	    $email = $data->email;
+	    $emailUser = $data->email;
 
 	    //se envia por correo al usuario su cuenta y pass
 			$emailATSA = "atsasannicolas@hotmail.com";
 
 			$this->email->from($emailATSA, $cuit);
-			$this->email->to($email);
+			$this->email->to($emailUser);
 
 			$this->email->subject('Ha sido dado de alta en la web de ATSA San Nicolás');
 
-			$body = 	"Su cuenta de usuario es: " . $cuit . "\n\n" .
-						"Su Nueva contraseña es: " .$pass . "\n\n" .
-						"Guarde este correo para conservar su contraseña en caso de olvidarla.";
+			$body = "Su cuenta de usuario es: " . $cuit . "\n\n" .
+				"Su Nueva contraseña es: " .$pass . "\n\n" .
+				"Guarde este correo para conservar su contraseña en caso de olvidarla.";
 
 			$this->email->message($body);	
 
 			if($this->email->send()) {
-                $this->load->view('admin/header');
+        $this->load->view('admin/header');
 				echo "<h4 style='text-align:center;'>Se ha reseteado la contraseña del usuario!</h4>";
 				$this->load->view('admin/listar');
 				$this->load->view('admin/footer');
-            } else {
-                echo 'Hubo un error procesando lo solicitado. Intente nuevamente mas tarde';
-                redirect('/welcome');
-            }
+      }else{
+        echo 'Hubo un error procesando lo solicitado. Intente nuevamente mas tarde';
+        redirect('/welcome');
+      }
 	}
 
 	public function salir()

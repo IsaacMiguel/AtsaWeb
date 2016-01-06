@@ -26,13 +26,13 @@
                 <div class="control-group form-group col-sm-4">
                     <div class="controls">
                         <label>Cuit:</label>
-                        <input type="text" class="form-control" name="cuit" id="cuit" required data-validation-required-message="Por favor, ingrese un correo.">
+                        <input type="text" class="form-control" name="cuit" id="cuit" required>
                     </div>
                 </div>
                 <div class="control-group form-group col-sm-6">
                     <div class="controls">
                         <label>Correo</label>
-                        <input type="email" class="form-control" name="email" id="email" required data-validation-required-message="Por favor, ingrese una contraseña">
+                        <input type="email" class="form-control" name="email" id="email" required>
                     </div>
                 </div>
                 <div id="success"></div>

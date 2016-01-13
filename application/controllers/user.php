@@ -151,51 +151,72 @@ class User extends CI_Controller
 			$id_emp = $this->usuario->getIdEmple($id);
 			$cuit = $id_emp->cuit;
 
+			$a_mes = $this->input->post('a_mes');
+			$anio = $this->input->post('anio');
 			$importe_capital = $this->input->post('importe_capital');
 			$cant_empleados = $this->input->post('cant_empleados');
 			$f_vto = $this->input->post('f_vto');
 
 			//$f_vto=date('Y-m-d',strtotime($f_hoy));
 
-			$f_pago = $this->input->post('f_pago');
+			$f_gener_boleta = date('Y-m-d');
+
+
+			$actual = date('d-m-Y');
+      $date1 = strtotime($actual);
+      $date2 = date("l", $date1);
+      $date3 = strtolower($date2);
+
+      if ($date3 == 'wednesday' || $date3 == 'thursday' || $date3 == 'friday') {
+          $f_v_pago = date('Y-m-d', strtotime($date3. ' + 5 days'));
+      }elseif ($date3 == 'saturday') {
+          $f_v_pago = date('Y-m-d', strtotime($date3. ' + 4 days'));
+      }else{
+          $f_v_pago = date('Y-m-d', strtotime($date3. ' + 3 days'));
+      }
+
+
 			$est_nombre = $this->input->post('est_nombre');
 			$est_direccion = $this->input->post('est_direccion');
 			$est_prov = $this->input->post('prov');
 			$est_loc = $this->input->post('loc');
 			$est_tel = $this->input->post('est_tel');
-			$email = $this->input->post('est_email');
+			$est_email = $this->input->post('est_email');
+
 
 			//Redonda a dos decimales el aporte del mes
 			$importe_capital = str_replace(",", ".", $importe_capital);
 			$importe_capital = round($importe_capital, 2);
+
 
 			//Saca el porcentaje del interes resarcitorio AFIP
 			$this->load->model('intereses');
 			$int_data = $this->intereses->getInteres();
 			$inter = $int_data->tasa;
 
+
 			//diferencia entre fechas
 
 				//diferencia en dias entre dias interes resarcitorio
 				$fecha1 = new DateTime($f_vto);
-				$fecha2 = new DateTime($f_pago);
+				$fecha2 = new DateTime($f_v_pago);
 				$int_Resarcitorio = $fecha1->diff($fecha2);
 				$YearInt_Res = $int_Resarcitorio->y;
-				$MonthInt_Res = $int_Resarcitorio->m - 1;
+				$MonthInt_Res = $int_Resarcitorio->m;
 				$fecha1_Days = date("d", strtotime($f_vto));
-				$fecha2_Days = date("d", strtotime($f_pago));
+				$fecha2_Days = date("d", strtotime($f_gener_boleta));
 
 
-				$diasFecha1 = 0;
+				/*$diasFecha1 = 0;
 				$diasFecha2 = 0;
 				//fecha1 hasta 30 ++
 				for ($i=$fecha1_Days; $i < 30; $i++) { 
-					$diasFecha1 = $diasFecha1 + 1;
+					$diasFecha1++;
 				}
 
 				//fecha2 hasta 0 --
 				for ($z=$fecha2_Days; $z > 0; $z--) { 
-					$diasFecha2 = $diasFecha2 + 1;
+					$diasFecha2++;
 				}
 
 				$difDias = $diasFecha1 + $diasFecha2;
@@ -203,18 +224,26 @@ class User extends CI_Controller
 
 				$D_year = $YearInt_Res * 360;
 				$D_month = $MonthInt_Res * 30;
-				$D_days = $difDias;
+				$D_days = $difDias + 1;
 
 				$tot_dias = $D_year + $D_month + $D_days;
 
-				$int_atraso = $tot_dias * $inter;
+				$int_atraso = $tot_dias * $inter;*/
+
+				//Calculo intereses
+					//cantidad de dias
+						$DiasY = $YearInt_Res * 360;
+						$diasD = $MonthInt_Res * 30;
+						$diasTotales = $DiasY + $diasD;
+					//Interes segun cantidad de dias
+					$interesAfip = $inter * $diasTotales;
 
 			//calculo de la tasa de interes y calculo de intereses
 				//tasa interes 2%
 				$int_pagar_2porc = ($importe_capital * 2)/100;
 
 				//tasa interes resarcitorio 3%
-				$int_pagar_3porc = ($int_pagar_2porc * $int_atraso)/100;
+				$int_pagar_3porc = ($importe_capital * $interesAfip)/100;
 
 				//interes resarcitorio
 				//redondeamos a dos decimales
@@ -225,14 +254,13 @@ class User extends CI_Controller
 				$int_pagar_3porc = round($int_pagar_3porc, 2);
 
 			//formatea fecha para guardar en BD
-				//$f_vto=date("Y-m-d",strtotime($f_vto));
+				$f_vto=date("Y-m-d",strtotime($f_vto));
 
 			//TOTAL A PAGAR
-			$total_pagar = $int_pagar_2porc + $int_pagar_3porc;
-
+			$total_pagar = $int_pagar_2porc + $int_pagar_3porc;	
 
 			$this->load->model('usuario');
-			$this->usuario->crear_boleta($cuit,$importe_capital,$cant_empleados,$f_vto,$f_pago, $int_pagar_2porc,$int_pagar_3porc,$total_pagar,$est_nombre,$est_direccion,$est_prov,$est_loc,$est_tel,$email);
+			$this->usuario->crear_boleta($cuit,$a_mes,$anio,$f_vto,$f_gener_boleta,$f_v_pago,$cant_empleados,$importe_capital,$int_pagar_2porc,$int_pagar_3porc,$total_pagar,$est_nombre,$est_direccion,$est_prov,$est_loc,$est_tel,$est_email);
 
 			header('Location: ' . base_url() . 'user/ver_boleta');
 		}else{
@@ -377,7 +405,7 @@ class User extends CI_Controller
 			//se selecciona el empleador respecto al id del usuario logueado
 			$data['data'] = $this->usuario->getEmple($id);
 			//se obtiene el numero de boletas
-			$data['boleta'] = $this->usuario->getBoletaById($id_boleta);
+			$data['boleta'] = $id_boleta;
 
 			$this->load->model('prov_localidad');
 			$data['prov'] = $this->prov_localidad->getProv();
@@ -390,7 +418,7 @@ class User extends CI_Controller
 
 			$this->load->view('user/header');
 			$this->load->view('user/modificar_boleta', $data);
-			$this->load->view('user/footer');
+			$this->load->view('user/footer_imprimir');
 
 		}else{
 			header('Location: ' . base_url());
@@ -403,76 +431,83 @@ class User extends CI_Controller
 			//carga de los inputs de la vista
 			$id_boleta = $this->input->post('nro_boleta');
 
+
 			//Cargar cuit
 			$this->load->model('usuario');
 			$id = $this->session->userdata('id');
 			$id_emp = $this->usuario->getIdEmple($id);
 			$cuit = $id_emp->cuit;
 
+			$a_mes = $this->input->post('a_mes');
+			$anio = $this->input->post('anio');
 			$importe_capital = $this->input->post('importe_capital');
 			$cant_empleados = $this->input->post('cant_empleados');
 			$f_vto = $this->input->post('f_vto');
 
 			//$f_vto=date('Y-m-d',strtotime($f_hoy));
 
-			$f_pago = $this->input->post('f_pago');
+			$f_gener_boleta = date('Y-m-d');
+
+
+			$actual = date('d-m-Y');
+      $date1 = strtotime($actual);
+      $date2 = date("l", $date1);
+      $date3 = strtolower($date2);
+
+      if ($date3 == 'wednesday' || $date3 == 'thursday' || $date3 == 'friday') {
+          $f_v_pago = date('Y-m-d', strtotime($date3. ' + 5 days'));
+      }elseif ($date3 == 'saturday') {
+          $f_v_pago = date('Y-m-d', strtotime($date3. ' + 4 days'));
+      }else{
+          $f_v_pago = date('Y-m-d', strtotime($date3. ' + 3 days'));
+      }
+
+
 			$est_nombre = $this->input->post('est_nombre');
 			$est_direccion = $this->input->post('est_direccion');
 			$est_prov = $this->input->post('prov');
 			$est_loc = $this->input->post('loc');
 			$est_tel = $this->input->post('est_tel');
-			$email = $this->input->post('est_email');
+			$est_email = $this->input->post('est_email');
+
 
 			//Redonda a dos decimales el aporte del mes
 			$importe_capital = str_replace(",", ".", $importe_capital);
 			$importe_capital = round($importe_capital, 2);
+
 
 			//Saca el porcentaje del interes resarcitorio AFIP
 			$this->load->model('intereses');
 			$int_data = $this->intereses->getInteres();
 			$inter = $int_data->tasa;
 
+
 			//diferencia entre fechas
 
 				//diferencia en dias entre dias interes resarcitorio
 				$fecha1 = new DateTime($f_vto);
-				$fecha2 = new DateTime($f_pago);
+				$fecha2 = new DateTime($f_v_pago);
 				$int_Resarcitorio = $fecha1->diff($fecha2);
 				$YearInt_Res = $int_Resarcitorio->y;
-				$MonthInt_Res = $int_Resarcitorio->m - 1;
+				$MonthInt_Res = $int_Resarcitorio->m;
 				$fecha1_Days = date("d", strtotime($f_vto));
-				$fecha2_Days = date("d", strtotime($f_pago));
+				$fecha2_Days = date("d", strtotime($f_gener_boleta));
 
 
-				$diasFecha1 = 0;
-				$diasFecha2 = 0;
-				//fecha1 hasta 30 ++
-				for ($i=$fecha1_Days; $i < 30; $i++) { 
-					$diasFecha1 = $diasFecha1 + 1;
-				}
-
-				//fecha2 hasta 0 --
-				for ($z=$fecha2_Days; $z > 0; $z--) { 
-					$diasFecha2 = $diasFecha2 + 1;
-				}
-
-				$difDias = $diasFecha1 + $diasFecha2;
-
-
-				$D_year = $YearInt_Res * 360;
-				$D_month = $MonthInt_Res * 30;
-				$D_days = $difDias;
-
-				$tot_dias = $D_year + $D_month + $D_days;
-
-				$int_atraso = $tot_dias * $inter;
+				//Calculo intereses
+					//cantidad de dias
+						$DiasY = $YearInt_Res * 360;
+						$diasD = $MonthInt_Res * 30;
+						$diasTotales = $DiasY + $diasD;
+					//Interes segun cantidad de dias
+					$interesAfip = $inter * $diasTotales;
 
 			//calculo de la tasa de interes y calculo de intereses
 				//tasa interes 2%
 				$int_pagar_2porc = ($importe_capital * 2)/100;
 
 				//tasa interes resarcitorio 3%
-				$int_pagar_3porc = ($int_pagar_2porc * $int_atraso)/100;
+				$int_pagar_3porc = ($importe_capital * $interesAfip)/100;
 
 				//interes resarcitorio
 				//redondeamos a dos decimales
@@ -483,15 +518,14 @@ class User extends CI_Controller
 				$int_pagar_3porc = round($int_pagar_3porc, 2);
 
 			//formatea fecha para guardar en BD
-				//$f_vto=date("Y-m-d",strtotime($f_vto));
+				$f_vto=date("Y-m-d",strtotime($f_vto));
 
 			//TOTAL A PAGAR
-			$total_pagar = $int_pagar_2porc + $int_pagar_3porc;
-
-			
+			$total_pagar = $int_pagar_2porc + $int_pagar_3porc;	
 
 			$this->load->model('usuario');
-			$this->usuario->modificar_boleta($id_boleta,$cuit,$importe_capital,$cant_empleados,$f_vto,$f_pago, $int_pagar_2porc,$int_pagar_3porc,$total_pagar,$est_nombre,$est_direccion,$est_prov,$est_loc,$est_tel,$email);
+			
+			$this->usuario->modificar_boleta($id_boleta,$cuit,$a_mes,$anio,$f_vto,$f_gener_boleta,$f_v_pago,$cant_empleados,$importe_capital,$int_pagar_2porc,$int_pagar_3porc,$total_pagar,$est_nombre,$est_direccion,$est_prov,$est_loc,$est_tel,$est_email);
 
 			header('Location: ' . base_url() . 'user/verBoleta_mod/'. $id_boleta);
 		}else{

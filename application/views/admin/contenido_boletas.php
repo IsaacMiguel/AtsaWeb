@@ -50,7 +50,7 @@
                                     </td>
                                     <td>
                                         <?php
-                                            $f_capital = $d->f_pago;
+                                            $f_capital = $d->f_v_pago;
                                             $f_capital=date("d-m-Y",strtotime($f_capital)); 
                                             echo $f_capital;
                                         ?>

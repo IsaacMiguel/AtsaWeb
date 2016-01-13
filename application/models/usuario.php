@@ -88,14 +88,17 @@ class Usuario extends CI_Model{
 		return $result->row();
 	}
 
-	public function crear_boleta($cuit,$importe_capital,$cant_empleados,$f_vto,$f_pago, $int_pagar_2porc,$int_pagar_3porc,$total_pagar,$est_nombre,$est_direccion,$est_prov,$est_loc,$est_tel,$email)
+	public function crear_boleta($cuit,$a_mes,$anio,$f_vto,$f_gener_boleta,$f_v_pago,$cant_empleados,$importe_capital,$int_pagar_2porc,$int_pagar_3porc,$total_pagar,$est_nombre,$est_direccion,$est_prov,$est_loc,$est_tel,$est_email)
 	{
 		$data = array(
 			'cuit' => $cuit,
-			'importe_capital' => $importe_capital,
-			'cant_empleados' => $cant_empleados,
+			'a_mes' => $a_mes,
+			'anio' => $anio,
 			'f_vto' => $f_vto,
-			'f_pago' => $f_pago,
+			'f_gener_boleta' => $f_gener_boleta,
+			'f_v_pago' => $f_v_pago,
+			'cant_empleados' => $cant_empleados,
+			'importe_capital' => $importe_capital,
 			'int_pagar_2porc' => $int_pagar_2porc,
 			'int_pagar_3porc' => $int_pagar_3porc,
 			'total_pagar' => $total_pagar,
@@ -104,7 +107,7 @@ class Usuario extends CI_Model{
 			'est_prov' => $est_prov,
 			'est_loc' => $est_loc,
 			'est_tel' => $est_tel,
-			'email' => $email
+			'est_email' => $est_email
 			);
 
 		$this->db->insert('boletas', $data);
@@ -131,14 +134,17 @@ class Usuario extends CI_Model{
 		return $query->row();
 	}
 
-	public function modificar_boleta($id_boleta,$cuit,$importe_capital,$cant_empleados,$f_vto,$f_pago, $int_pagar_2porc,$int_pagar_3porc,$total_pagar,$est_nombre,$est_direccion,$est_prov,$est_loc,$est_tel,$email)
+	public function modificar_boleta($id_boleta,$cuit,$a_mes,$anio,$f_vto,$f_gener_boleta,$f_v_pago,$cant_empleados,$importe_capital,$int_pagar_2porc,$int_pagar_3porc,$total_pagar,$est_nombre,$est_direccion,$est_prov,$est_loc,$est_tel,$est_email)
 	{
 		$data = array(
 			'cuit' => $cuit,
-			'importe_capital' => $importe_capital,
-			'cant_empleados' => $cant_empleados,
+			'a_mes' => $a_mes,
+			'anio' => $anio,
 			'f_vto' => $f_vto,
-			'f_pago' => $f_pago,
+			'f_gener_boleta' => $f_gener_boleta,
+			'f_v_pago' => $f_v_pago,
+			'cant_empleados' => $cant_empleados,
+			'importe_capital' => $importe_capital,
 			'int_pagar_2porc' => $int_pagar_2porc,
 			'int_pagar_3porc' => $int_pagar_3porc,
 			'total_pagar' => $total_pagar,
@@ -147,7 +153,7 @@ class Usuario extends CI_Model{
 			'est_prov' => $est_prov,
 			'est_loc' => $est_loc,
 			'est_tel' => $est_tel,
-			'email' => $email 
+			'est_email' => $email 
 			);
 
 		$this->db->where('id_boleta', $id_boleta);

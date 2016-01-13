@@ -41,9 +41,9 @@
                     </td>
                     <td>
                         <?php
-                            $f_pago = $boleta->f_pago;
-                            $f_pago=date("d-m-Y",strtotime($f_pago)); 
-                            echo $f_pago
+                            $f_v_pago = $boleta->f_v_pago;
+                            $f_v_pago=date("d-m-Y",strtotime($f_v_pago)); 
+                            echo $f_v_pago
                         ?>
                     </td>
                     <td>$ <?php echo $boleta->total_pagar;?>-</td>

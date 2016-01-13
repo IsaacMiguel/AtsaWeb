@@ -83,18 +83,6 @@
                 }
             });
 
-            $("#cargaBoleta").submit(function(event) {
-                fvto = $('#f_vto').val();
-                fpago = $('#f_pago').val();
-
-                if (Date.parse(fvto) < Date.parse(fpago)) {
-                    
-                    return;
-                }
-
-                alert("¡La Fecha de Pago no Puede ser anterior a la de vencimiento!");
-                event.preventDefault();
-            });
         });
     </script>
 

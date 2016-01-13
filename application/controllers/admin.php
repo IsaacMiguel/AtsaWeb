@@ -308,20 +308,14 @@ class Admin extends CI_Controller
 			
 			//guardando importes para pasar decimales por puntos a comas
 			$i_capital = $data['data']->importe_capital;
-			$i_res = $data['data']->tot_intRes;
-			$i_resCap = $data['data']->tot_intResCap;
 			$t_pagar = $data['data']->total_pagar;
 			
 			//reemplazando puntos por comas
 			$imp_capital = str_replace(".", ",", $i_capital);
-			$int_res = str_replace(".", ",", $i_res);
-			$int_resCap = str_replace(".", ",", $i_resCap);
 			$tot_pagar = str_replace(".", ",", $t_pagar);
 
 			//reemplazando los importes para la vista
 			$data['data']->importe_capital = $imp_capital;
-			$data['data']->tot_intRes = $int_res;
-			$data['data']->tot_intResCap = $int_resCap;
 			$data['data']->total_pagar = $tot_pagar;
 
 			$this->load->view('admin/header');

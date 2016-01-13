@@ -2,18 +2,11 @@
 	<div class="encabezado-tabla">
 		<h3>Asociación de Trabajadores de la Sanidad Argentina</h3>			
 		<p>Filial San Nicolás</p>
-		<p>Operaciones pendientes</p>
-		<p>Boleta creada el
-			<?php
-                $f_hoy = $data->f_hoy;
-                $f_vto=date("d-m-Y",strtotime($f_hoy)); 
-                echo $f_vto
-            ?>
-		</p>
-		<p><input hidden id="nro_boleta" name="nro_boleta" value="<?php echo $data->id_boleta;?>"><?php echo "Nro boleta " . $data->id_boleta;?></p>	
+		<p>Aporte Sindical 2%</p>
+		<p>Nro de Boleta <input hidden id="nro_boleta" name="nro_boleta" value="<?php echo $data->id_boleta;?>"><?php echo "Nro boleta " . $data->id_boleta;?></p>	
 	</div>
 
-<table class="table-bordered">
+<table style="font-size:10px;">
 	<tbody>
 	<!-- Seccion data -->
 		<tr>
@@ -21,7 +14,7 @@
 				<p><b>Empleador: </b></p>
 			</td>
 			<td>
-				<p><b>CUIT: </b></p>
+				<p><b>_____CUIT:_____</b></p>
 			</td>
 			<td>
 				<p><b>Dirección: </b></p>
@@ -33,168 +26,154 @@
 				<p><b>Localidad: </b></p>
 			</td>
 		</tr>
-
+<tr><td><hr></td></tr>
 		<tr>
-			<td>
-				<input hidden id="empleador" name="empleador" value="<?php echo $emple->cuit?>"><?php echo $emple->empleador?>
+			<td class="bordeado">
+				<input hidden id="empleador" name="empleador" value="<?php echo $emple->empleador?>"><?php echo $emple->empleador?>
 			</td>
-			<td>
+			<td class="bordeado">
 				<input hidden id="cuit" name="cuit" value="<?php echo $emple->cuit;?>"><?php echo $emple->cuit;?>
 			</td>
-			<td>
+			<td class="bordeado">
 				<input hidden id="direccion" name="direccion" value="<?php echo $emple->direccion;?>"><?php echo $emple->direccion;?>
 			</td>
-			<td>
+			<td class="bordeado">
 				<input hidden id="prov" name="prov" value="<?php echo $prov->id;?>"><?php echo $prov->provincia_nombre;?>
 			</td>
-			<td>
+			<td class="bordeado">
 				<input hidden id="loc" name="loc" value="<?php echo $localidad->id;?>"><?php echo $localidad->ciudad_nombre;?>
 			</td>
 		</tr>
-
+<tr><td><hr></td></tr>
 		<tr>
 			<td>
-				<p><b>Fecha de Vencimiento:</b></p>
+				<p><b>Aporte del mes:</b></p>
 			</td>
 			<td>
-				<p><b>Fecha de Pago de Capital:</b></p>
+				<p><b>Año:</b></p>
 			</td>
 			<td>
-				<p><b>Fecha de Pago de Intereses:</b></p>
+				<p><b>Fecha de Vencimiento de aporte:</b></p>
+			</td>
+			<td>
+				<p><b>Fecha de generacion de boleta:</b></p>
+			</td>
+			<td>
+				<p><b>Vencimiento para el pago:</b></p>
 			</td>
 		</tr>
-
+<tr><td><hr></td></tr>
 		<tr>
-			<td>
+			<td class="bordeado">
 				<p>
 					<?php
-                        $f_vto = $data->f_vto;
-                        $f_vto=date("d-m-Y",strtotime($f_vto)); 
-                        echo $f_vto
-                    ?>
+            $f_vto = $data->a_mes;
+            $f_vto=date("m",strtotime($f_vto)); 
+            echo $f_vto - 1;
+          ?>
 				</p>
 			</td>
-			<td>
+			<td class="bordeado">
 				<p>
 					<?php
-                        $f_capital = $data->f_capital;
-                        $f_capital=date("d-m-Y",strtotime($f_capital)); 
-                        echo $f_capital
-                    ?>
+              $f_vto = $data->anio;
+              $f_vto=date("Y",strtotime($f_vto)); 
+              echo $f_vto
+          ?>
 				</p>
 			</td>
-			<td>
+			<td class="bordeado">
 				<p>
 					<?php
-                        $f_interes = $data->f_interes;
-                        $f_interes=date("d-m-Y",strtotime($f_interes)); 
-                        echo $f_interes
-                    ?>
+              $f_vto = $data->f_vto;
+              $f_vto=date("d-m-Y",strtotime($f_vto)); 
+              echo $f_vto
+          ?>
+				</p>
+			</td>
+			<td class="bordeado">
+				<p>
+					<?php
+	          $f_pago = $data->f_gener_boleta;
+	          $f_pago=date("d-m-Y",strtotime($f_pago)); 
+	          echo $f_pago
+	      	?>
+				</p>
+			</td>
+			<td class="bordeado">
+				<p>
+					<?php
+              $f_pago = $data->f_v_pago;
+              $f_pago=date("d-m-Y",strtotime($f_pago)); 
+              echo $f_pago;
+          ?>
 				</p>
 			</td>
 		</tr>
 	<!-- /Seccion data -->
 
+<tr><td><hr></td></tr>
 
 	<!-- Seccion impositiva -->
 		<tr>
 			<td>
-				<p><b>Importe de Capital:</b></p>
+				<div><b>Cant. empleados afiliados:</b>
 			</td>
-			<td>
-				<p><?php echo $data->importe_capital;?></p>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<div><b>Cant. empleados:</b>
-			</td>
-			<td>
+			<td class="bordeado">
 				<p><?php echo $data->cant_empleados;?></p>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<b>Total de Intereses Resarcitorios:</b>
+				<p><b>Total de Remuneraciones de afiliados(Jornada por 8 hs):</b></p>
 			</td>
-			<td>
-				<b>$ </b><?php echo $data->tot_intRes;?>-
-			</td>
-		</tr>
-		<?php if ($data->tot_intResCap > 0) { ?>
-		<tr>
-			<td>
-				<b>Total de Intereses Resarcitorios Capitalizados:</b>
-			</td>
-			<td>
-				<b>$ </b><?php echo $data->tot_intResCap;?>-
+			<td class="bordeado">
+				<p><?php echo $data->importe_capital;?></p>
 			</td>
 		</tr>
-		<?php }?>
 		<tr>
 			<td>
-				<b>Total General:</b>
+				<b>2% de las remuneraciones:</b>
 			</td>
+			<td class="bordeado">
+				<b>$ </b><?php echo $data->int_pagar_2porc;?>-
+			</td>
+		</tr>
+		<tr>
 			<td>
+				<b>Intereses:</b>
+			</td>
+			<td class="bordeado">
+				<b>$ </b><?php echo $data->int_pagar_3porc;?>-
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<b>Total a Pagar:</b>
+			</td>
+			<td class="bordeado">
 				<b>$ </b><?php echo $data->total_pagar;?>-
 			</td>
 		</tr>
-
-		<!-- Datos contador -->
-
+		<tr><td><hr></td></tr>
 		<tr>
 			<td>
-				<b>Estudio contable</b>
+				<b>Abonar en la sede de A.T.S.A San Nicolás</b><br>
+				<b>Lavalle 267, San Nicolás, Pcia Buenos Aires</b>
 			</td>
 			<td>
-				<b>Dirección:</b>
+				
 			</td>
 			<td>
-				<b>Provincia:</b>
+				IMPRIMIR 2 COPIAS
 			</td>
-			<td>
-				<b>Localidad:</b>
-			</td>
-		</tr>
-
-		<tr>
-			<td>
-				<p><?php echo $data->est_nombre;?></p>
-			</td>
-			<td>
-				<p><?php echo $data->est_direccion;?></p>
-			</td>
-			<td>
-				<p><?php echo $est_prov->provincia_nombre;?></p>
-			</td>
-			<td>
-				<p><?php echo $est_loc->ciudad_nombre;?></p>
-			</td>
-		</tr>
-
-		<tr>
-			<td>
-				<b>Telefono:</b>
-			</td>
-			<td>
-				<b>Email:</b>
-			</td>
-		</tr>
-
-		<tr>
-			<td>
-				<p><?php echo $data->est_tel;?></p>
-			</td>
-			<td>
-				<p><?php echo $data->email;?></p>
-			</td>
-		</tr>
-
-		<tr>
+			<td></td>
 			<td style="border-style: none;">
-				FIRMA Y SELLO POR CAJERO:
+				<b>FIRMA Y SELLO POR CAJERO:</b>
 			</td>
 		</tr>
+
 	</tbody>
 	
 </table>

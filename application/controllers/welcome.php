@@ -22,15 +22,15 @@ class Welcome extends CI_Controller {
 			if ($this->session->userdata('cuit') == 'admin@atsa.com') {
 				$this->load->view('admin/header');
 				$this->load->view('index');
-				$this->load->view('layout/footer');	
+				$this->load->view('layout/footerIndex');	
 			}elseif ($this->session->userdata('id')) {
 				$this->load->view('user/header');
 				$this->load->view('index');
-				$this->load->view('layout/footer');
+				$this->load->view('layout/footerIndex');
 			}else{
 				$this->load->view('layout/header');
 				$this->load->view('index');
-				$this->load->view('layout/footer');
+				$this->load->view('layout/footerIndex');
 			}
 	}
 }

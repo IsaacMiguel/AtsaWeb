@@ -199,7 +199,7 @@ class User extends CI_Controller
 
 				//diferencia en dias entre dias interes resarcitorio
 				$fecha1 = new DateTime($f_vto);
-				$fecha2 = new DateTime($f_v_pago);
+				$fecha2 = new DateTime($f_gener_boleta);
 				$int_Resarcitorio = $fecha1->diff($fecha2);
 				$YearInt_Res = $int_Resarcitorio->y;
 				$MonthInt_Res = $int_Resarcitorio->m;
@@ -207,7 +207,7 @@ class User extends CI_Controller
 				$fecha2_Days = date("d", strtotime($f_gener_boleta));
 
 
-				/*$diasFecha1 = 0;
+				$diasFecha1 = 0;
 				$diasFecha2 = 0;
 				//fecha1 hasta 30 ++
 				for ($i=$fecha1_Days; $i < 30; $i++) { 
@@ -228,22 +228,19 @@ class User extends CI_Controller
 
 				$tot_dias = $D_year + $D_month + $D_days;
 
-				$int_atraso = $tot_dias * $inter;*/
+				if ($fecha1 > $fecha2) {
+					$tot_dias = 0;
+				}
 
-				//Calculo intereses
-					//cantidad de dias
-						$DiasY = $YearInt_Res * 360;
-						$diasD = $MonthInt_Res * 30;
-						$diasTotales = $DiasY + $diasD;
-					//Interes segun cantidad de dias
-					$interesAfip = $inter * $diasTotales;
+				$int_atraso = $tot_dias * $inter;
+
 
 			//calculo de la tasa de interes y calculo de intereses
 				//tasa interes 2%
 				$int_pagar_2porc = ($importe_capital * 2)/100;
 
 				//tasa interes resarcitorio 3%
-				$int_pagar_3porc = ($importe_capital * $interesAfip)/100;
+				$int_pagar_3porc = ($int_pagar_2porc * $int_atraso)/100;
 
 				//interes resarcitorio
 				//redondeamos a dos decimales
@@ -431,7 +428,6 @@ class User extends CI_Controller
 			//carga de los inputs de la vista
 			$id_boleta = $this->input->post('nro_boleta');
 
-
 			//Cargar cuit
 			$this->load->model('usuario');
 			$id = $this->session->userdata('id');
@@ -486,7 +482,7 @@ class User extends CI_Controller
 
 				//diferencia en dias entre dias interes resarcitorio
 				$fecha1 = new DateTime($f_vto);
-				$fecha2 = new DateTime($f_v_pago);
+				$fecha2 = new DateTime($f_gener_boleta);
 				$int_Resarcitorio = $fecha1->diff($fecha2);
 				$YearInt_Res = $int_Resarcitorio->y;
 				$MonthInt_Res = $int_Resarcitorio->m;
@@ -494,20 +490,40 @@ class User extends CI_Controller
 				$fecha2_Days = date("d", strtotime($f_gener_boleta));
 
 
-				//Calculo intereses
-					//cantidad de dias
-						$DiasY = $YearInt_Res * 360;
-						$diasD = $MonthInt_Res * 30;
-						$diasTotales = $DiasY + $diasD;
-					//Interes segun cantidad de dias
-					$interesAfip = $inter * $diasTotales;
+				$diasFecha1 = 0;
+				$diasFecha2 = 0;
+				//fecha1 hasta 30 ++
+				for ($i=$fecha1_Days; $i < 30; $i++) { 
+					$diasFecha1++;
+				}
+
+				//fecha2 hasta 0 --
+				for ($z=$fecha2_Days; $z > 0; $z--) { 
+					$diasFecha2++;
+				}
+
+				$difDias = $diasFecha1 + $diasFecha2;
+
+
+				$D_year = $YearInt_Res * 360;
+				$D_month = $MonthInt_Res * 30;
+				$D_days = $difDias + 1;
+
+				$tot_dias = $D_year + $D_month + $D_days;
+
+				if ($fecha1 > $fecha2) {
+					$tot_dias = 0;
+				}
+
+				$int_atraso = $tot_dias * $inter;
+
 
 			//calculo de la tasa de interes y calculo de intereses
 				//tasa interes 2%
 				$int_pagar_2porc = ($importe_capital * 2)/100;
 
 				//tasa interes resarcitorio 3%
-				$int_pagar_3porc = ($importe_capital * $interesAfip)/100;
+				$int_pagar_3porc = ($int_pagar_2porc * $int_atraso)/100;
 
 				//interes resarcitorio
 				//redondeamos a dos decimales

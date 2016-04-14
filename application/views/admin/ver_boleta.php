@@ -3,7 +3,7 @@
 		<h3>Asociación de Trabajadores de la Sanidad Argentina</h3>			
 		<p>Filial San Nicolás</p>
 		<p>Aporte Sindical 2%</p>
-		<p>Nro de Boleta <input hidden id="nro_boleta" name="nro_boleta" value="<?php echo $data->id_boleta;?>"><?php echo "Nro boleta " . $data->id_boleta;?></p>	
+		<p><input hidden id="nro_boleta" name="nro_boleta" value="<?php echo $data->id_boleta;?>"><?php echo "Nro boleta " . $data->id_boleta;?></p>	
 	</div>
 
 <table style="font-size:10px;">
@@ -14,7 +14,7 @@
 				<p><b>Empleador: </b></p>
 			</td>
 			<td>
-				<p><b>_____CUIT:_____</b></p>
+				<p><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCUIT:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></p>
 			</td>
 			<td>
 				<p><b>Dirección: </b></p>
@@ -50,7 +50,7 @@
 				<p><b>Aporte del mes:</b></p>
 			</td>
 			<td>
-				<p><b>Año:</b></p>
+				<p><b>A&ntildeo:</b></p>
 			</td>
 			<td>
 				<p><b>Fecha de Vencimiento de aporte:</b></p>
@@ -76,9 +76,7 @@
 			<td class="bordeado">
 				<p>
 					<?php
-              $f_vto = $data->anio;
-              $f_vto=date("Y",strtotime($f_vto)); 
-              echo $f_vto
+              echo $data->anio;
           ?>
 				</p>
 			</td>
@@ -116,45 +114,39 @@
 
 	<!-- Seccion impositiva -->
 		<tr>
-			<td>
-				<div><b>Cant. empleados afiliados:</b>
-			</td>
-			<td class="bordeado">
-				<p><?php echo $data->cant_empleados;?></p>
-			</td>
+			<td><div><b>Cant. empleados afiliados:</b></td>
+			<td class="bordeado"><p><?php echo $data->cant_empleados;?></p></td>
 		</tr>
 		<tr>
-			<td>
-				<p><b>Total de Remuneraciones de afiliados(Jornada por 8 hs):</b></p>
-			</td>
-			<td class="bordeado">
-				<p><?php echo $data->importe_capital;?></p>
-			</td>
+			<td><p><b>Total de Remuneraciones de afiliados(Jornada por 8 hs):</b></p></td>
+			<td class="bordeado"><p>$ <?php echo $data->importe_capital;?></p></td>
 		</tr>
 		<tr>
-			<td>
-				<b>2% de las remuneraciones:</b>
-			</td>
-			<td class="bordeado">
-				<b>$ </b><?php echo $data->int_pagar_2porc;?>-
-			</td>
+			<td><b>2% de las remuneraciones:</b></td>
+			<td class="bordeado"><b>$ </b><?php echo $data->int_pagar_2porc;?>-</td>
 		</tr>
 		<tr>
-			<td>
-				<b>Intereses:</b>
-			</td>
-			<td class="bordeado">
-				<b>$ </b><?php echo $data->int_pagar_3porc;?>-
-			</td>
+			<td><b>Intereses:</b></td>
+			<td class="bordeado"><b>$ </b><?php echo $data->int_pagar_3porc;?>-</td>
 		</tr>
 
 		<tr>
-			<td>
-				<b>Total a Pagar:</b>
-			</td>
-			<td class="bordeado">
-				<b>$ </b><?php echo $data->total_pagar;?>-
-			</td>
+			<td><b>Total a Pagar:</b></td>
+			<td class="bordeado"><b>$ </b><?php echo $data->total_pagar;?>-</td>
+		</tr>
+		<tr><td><hr></td></tr>
+		<tr>
+			<td><b>Estudio</b></td>
+			<td><b>Dirección</b></td>
+			<td><b>telefono</b></td>
+			<td><b>email</b></td>
+		</tr>
+		<tr><td><hr></td></tr>
+		<tr>
+			<td class="bordeado"><?php echo $data->est_nombre;?></td>
+			<td class="bordeado"><?php echo $data->est_direccion;?></td>
+			<td class="bordeado"><?php echo $data->est_tel;?></td>
+			<td class="bordeado"><?php echo $data->est_email;?></td>
 		</tr>
 		<tr><td><hr></td></tr>
 		<tr>

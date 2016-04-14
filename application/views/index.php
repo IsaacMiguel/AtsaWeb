@@ -41,7 +41,7 @@
     <!-- Page Content -->
     <div class="container">
     <!-- Seccion navideña -->
-<hr>
+<!-- <hr>
         <div id="santa" class="row"></div>
         <div class="row panel">
             <div class="col-md-12">
@@ -55,7 +55,7 @@
                 <p class="navidad-texto">¡¡FELICES FIESTAS!!</p>
                 <p class="navidad-texto">A.T.S.A. FILIAL SAN NICOLÁS</p>
             </div>
-        </div>
+        </div> -->
     <!-- /Seccion navideña -->
 
         <!-- Marketing Icons Section -->

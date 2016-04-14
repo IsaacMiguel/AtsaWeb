@@ -3,7 +3,7 @@
 		<h3>Asociación de Trabajadores de la Sanidad Argentina</h3>			
 		<p>Filial San Nicolás</p>
 		<p>Aporte Sindical 2%</p>
-		<p>Nro de Boleta <input hidden id="nro_boleta" name="nro_boleta" value="<?php echo $data->id_boleta;?>"><?php echo "Nro boleta " . $data->id_boleta;?></p>	
+		<p>Nro de Boleta <input hidden id="nro_boleta" name="nro_boleta" value="<?php echo $data->id_boleta;?>"><?php echo $data->id_boleta;?></p>	
 	</div>
 
 <table style="font-size:10px;">
@@ -14,7 +14,7 @@
 				<p><b>Empleador: </b></p>
 			</td>
 			<td>
-				<p><b>_____CUIT:_____</b></p>
+				<p><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCUIT:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b></p>
 			</td>
 			<td>
 				<p><b>Dirección: </b></p>
@@ -50,7 +50,7 @@
 				<p><b>Aporte del mes:</b></p>
 			</td>
 			<td>
-				<p><b>Año:</b></p>
+				<p><b>A&ntildeo:</b></p>
 			</td>
 			<td>
 				<p><b>Fecha de Vencimiento de aporte:</b></p>
@@ -67,18 +67,14 @@
 			<td class="bordeado">
 				<p>
 					<?php
-            $f_vto = $data->a_mes;
-            $f_vto=date("m",strtotime($f_vto)); 
-            echo $f_vto - 1;
+            echo $data->a_mes;
           ?>
 				</p>
 			</td>
 			<td class="bordeado">
 				<p>
 					<?php
-              $f_vto = $data->anio;
-              $f_vto=date("Y",strtotime($f_vto)); 
-              echo $f_vto
+              echo $data->anio;
           ?>
 				</p>
 			</td>
@@ -128,7 +124,7 @@
 				<p><b>Total de Remuneraciones de afiliados(Jornada por 8 hs):</b></p>
 			</td>
 			<td class="bordeado">
-				<p><?php echo $data->importe_capital;?></p>
+				<p>$ <?php echo $data->importe_capital;?></p>
 			</td>
 		</tr>
 		<tr>

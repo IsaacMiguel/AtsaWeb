@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>ATSA - Asociación de trabajadores argentinos - Filial San Nicolás</title>
+        <title>A.T.S.A. - Asociación de trabajadores de la sanidad argentina - Filial San Nicolás</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="<?php echo base_url();?>../css/bootstrap.min.css" rel="stylesheet">
@@ -20,9 +20,6 @@
 
         <!-- Custom CSS -->
         <link href="<?php echo base_url();?>../css/main.css" rel="stylesheet">
-
-        <!-- Christmas CSS -->
-        <link href="<?php echo base_url();?>../css/christmas.css" rel="stylesheet">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -120,3 +117,4 @@
         </div>
         <!-- /.container -->
     </nav>
+</div>

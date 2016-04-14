@@ -79,7 +79,7 @@ class Admin extends CI_Controller
 					$this->email->message($body);	
 
 					if($this->email->send()) {
-		                $this->load->view('admin/header');
+            $this->load->view('admin/header');
 						echo "<h4 style='text-align:center;'>Usuario registrado con exito!</h4>";
 						$this->load->view('admin/registrar_usuario');
 						$this->load->view('admin/footer');
@@ -304,7 +304,7 @@ class Admin extends CI_Controller
 			$est_locID = $data['data']->est_loc;
 
 			$data['est_prov'] = $this->prov_localidad->getProvById($est_provID);
-			$data['est_loc'] = $this->prov_localidad->getLocalidadById($est_locID);		
+			$data['est_loc'] = $this->prov_localidad->getLocalidadById($est_locID);
 			
 			//guardando importes para pasar decimales por puntos a comas
 			$i_capital = $data['data']->importe_capital;
@@ -320,7 +320,7 @@ class Admin extends CI_Controller
 
 			$this->load->view('admin/header');
 			$this->load->view('admin/ver_boleta', $data);
-			$this->load->view('admin/footer');
+			$this->load->view('admin/imp_footer');
 	}
 
 	public function alta_boleta($id_boleta)

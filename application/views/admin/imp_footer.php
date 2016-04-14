@@ -1,19 +1,3 @@
-    </div>
-    <!-- /.container -->
-
-    <!-- Footer -->
-        <div class="footer">
-            <div>
-                <p>Lavalle 267, San Nicolás de los Arroyos - Buenos Aires - Argentina</p>
-                <p>Teléfono: (0336) 4425537</p>
-                <p>Correo: atsasannicolas@hotmail.com</p>
-            </div>
-            <p>Copyright &copy; <a href="http://www.sqldata.com.ar/">Leandro Dapello 2015</a></p>
-            <div>
-                <p>Sitio soportado por Internet Explorer 10 o superior, FireFox y Google Chrome en sus ultimas versiones</p>
-            </div>
-        </div>
-
     <!-- jQuery -->
     <script src="<?php echo base_url();?>../js/jquery.js"></script>
 

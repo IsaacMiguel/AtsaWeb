@@ -33,6 +33,11 @@
 		      location.replace(history.forward(1))
 		    }
 
+			    $(".login-overlay").fadeIn(300);
+			    $(".close").on('click', function(e) {
+			      $(".login-overlay").fadeOut(300);  
+			    });
+
 	    });
     </script>
 

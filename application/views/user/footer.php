@@ -9,6 +9,9 @@
                 <p>Correo: atsasannicolas@hotmail.com</p>
             </div>
             <p>Copyright &copy; <a href="http://www.sqldata.com.ar/">Leandro Dapello 2015</a></p>
+            <div>
+                <p>Sitio soportado por Internet Explorer 10 o superior, FireFox y Google Chrome en sus ultimas versiones</p>
+            </div>
         </div>
 
     <!-- jQuery -->
@@ -65,27 +68,25 @@
                 if (mes == 13) {
                     anio = anio + 1;
                     mes = "01";
-                    var fvto = "15-"+mes+"-"+anio;
+                    var fvto = "15/"+mes+"/"+anio;
                     console.log(fvto)
                     var fch_vto = changeDate(fvto);
                     $('#f_vto').val(fch_vto);
                 }else{
                     if (mes < 10) {
                         mes = "0" + mes;
-                        var fvto = "15-" + mes + "-" + anio;
+                        var fvto = "15/" + mes + "/" + anio;
                         var fch_vto = changeDate(fvto);
                         $('#f_vto').val(fch_vto);
                     }else{
-                        var fvto = "15-"+mes+"-"+anio;
+                        var fvto = "15/"+mes+"/"+anio;
                         var fch_vto = changeDate(fvto);
                         $('#f_vto').val(fch_vto);
                     }
                 }
             });
-
         });
     </script>
-
 </body>
 
 </html>

@@ -65,7 +65,7 @@
                         </tr>
                         <tr>
                             <td>Fecha de vencimiento de Aporte:</td>
-                            <td><input id="f_vto" name="f_vto" type="date" class="form-control" readonly required></td>
+                            <td><input id="f_vto" name="f_vto" type="text" class="form-control" readonly required></td>
                         </tr>
                         <tr>
                             <td>Fecha de generacion de boleta:</td>

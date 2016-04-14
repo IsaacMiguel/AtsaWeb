@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 
@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>ATSA - Asociación de trabajadores argentinos - Filial San Nicolás</title>
+    <title>A.T.S.A. - Asociación de trabajadores de la sanidad argentina - Filial San Nicolás</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url();?>../css/bootstrap.min.css" rel="stylesheet">

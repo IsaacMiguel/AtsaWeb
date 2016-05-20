@@ -164,9 +164,12 @@ class User extends CI_Controller
 
 			$actual = date('d-m-Y');
       $date1 = strtotime($actual);
+      //obtiene a que dia de la semana corresponde la fecha
       $date2 = date("l", $date1);
+      //pasa el string a minusculas
       $date3 = strtolower($date2);
 
+      //dependiende de que dia de la semana es le agrega los dias habiles (dias laborales) necesarios
       if ($date3 == 'wednesday' || $date3 == 'thursday' || $date3 == 'friday') {
           $f_v_pago = date('Y-m-d', strtotime($date3. ' + 5 days'));
       }elseif ($date3 == 'saturday') {
@@ -175,7 +178,7 @@ class User extends CI_Controller
           $f_v_pago = date('Y-m-d', strtotime($date3. ' + 3 days'));
       }
 
-
+      //carga los datos del estudio contable
 			$est_nombre = $this->input->post('est_nombre');
 			$est_direccion = $this->input->post('est_direccion');
 			$est_prov = $this->input->post('prov');
@@ -329,6 +332,7 @@ class User extends CI_Controller
 		}
 	}
 
+	//lista las boletas existentes del empleador
 	public function listarB_existentes()
 	{
 		if ($this->session->userdata('id')) {
@@ -393,6 +397,7 @@ class User extends CI_Controller
 		}
 	}
 
+	//carga boleta seleccionada para modificar
 	public function verMod_boletaById($id_boleta)
 	{
 		if ($this->session->userdata('id')) {
@@ -422,6 +427,7 @@ class User extends CI_Controller
 		}
 	}
 
+	//modifica la boleta con los datos cargados
 	public function mod_boleta()
 	{
 		if ($this->session->userdata('id')) {

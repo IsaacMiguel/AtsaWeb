@@ -30,6 +30,11 @@
     </head>
     
     <body>
+        <noscript>
+            <h2>La página que esta viendo requiere para que funcione correctamente el uso de Javascript.
+            Si lo ha desactivado intencionadamente, por favor vuelva a activarlo.</h2>
+        </noscript>
+
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
